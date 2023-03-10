@@ -42,22 +42,24 @@ input{
 }
 
 .filter{
-  padding: 15px;
+  padding: 5px;
   background-color: #D91604;
   color: white;
   width: 400px;
-  height: 10px;
+  height: auto;
   margin: auto;
   border-radius: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
-.list{
-  padding: 15px;
-  background-color: #512314;
-  color: white;
-  width: 400px;
-  margin: auto;
-  border-radius: 30px;
+.filter button{
+  background-color: #ff867d;
+  border-radius: 5px;
+  color:white;
+  font-size: 15px;
+  padding: auto;
 }
 
 .bottomBun{
@@ -78,3 +80,37 @@ input{
   font-size: 20px;
   justify-content: space-between;
 }
+
+.patty{
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  background-color: #512314;
+  color: white;
+  width: 400px;
+  margin: auto;
+  border-radius: 30px;
+  height: 40px;
+}
+
+.patty input{
+  margin: auto;
+}
+.patty h4{
+  width: 200px;
+  text-align: left;
+  padding: 0;
+  margin: auto;
+}
+
+.patty button{
+  background-color: #FFAA01;
+  /* margin: 5px; */
+  border-radius: 5px;
+  /* padding: 5px 10px; */
+  border: none;
+  font-size: 15px;
+  height: 30px;
+  margin: auto;
+}
+
