@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Titan+One&display=swap');
+body{
+  margin-top: 20px;
+}
+.title > header{
+  padding: 25px 20px;
+  background-color: #FF8731;
+  color: white;
+  font-size: 28px;
+  font-family: 'Titan One', cursive;
+  width: 350px;
+  height: 50px;
+  border-radius: 100px 100px 10px 10px;
+  text-align: center;
+  margin: auto;
+}
+
+.title__container {
+  width: 95%;
+  /* margin: 50px auto 0 auto; */
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: auto;
+}
+
+.title__container > button {
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-size: 18px;
+  /* padding: 10px 15px; */
+  margin: 0 auto;
+  background-color: #1A8738;
+  cursor: pointer;
+  width: 380px;
+  height: 30px;
+}
+
+.title__container > button:hover{
+  background-color: #4b9c62;
+}
+
+.todoApp__container > button:active{
+  background-color: hsl(210, 12%, 15%);
+}
+
+.todoApp__tasks{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+}

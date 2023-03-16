@@ -1,116 +1,113 @@
-/* .app{
-  align-items: center;
-} */
 @import url('https://fonts.googleapis.com/css2?family=Titan+One&display=swap');
-.header{
-  padding: 12px;
-  background-color:#FF8731;
-  color: black;
-  text-align: center;
-  width: 400px;
-  margin: auto;
-  border-radius: 100px 100px 10px 10px;
+.header {
+    padding: 12px;
+    background-color: #FF8731;
+    color: black;
+    text-align: center;
+    width: 400px;
+    margin: auto;
+    border-radius: 100px 100px 10px 10px;
 }
 
-.header h1{
-  font-family: 'Titan One', cursive;
+.header h1 {
+    font-family: 'Titan One', cursive;
 }
 
-.form{
-  padding: 10px;
-  background-color:#1A8738;
-  color: white;
-  text-align: center;
-  width: 400px;
-  margin: auto;
-  border-radius: 30px;
+.form {
+    padding: 10px;
+    background-color: #1A8738;
+    color: white;
+    text-align: center;
+    width: 400px;
+    margin: auto;
+    border-radius: 30px;
 }
 
-button{
-  background-color: #FFAA01;
-  margin: 5px;
-  border-radius: 5px;
-  padding: 5px 10px;
-  border: none;
-  font-size: 15px;
+button {
+    background-color: #FFAA01;
+    margin: 5px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    border: none;
+    font-size: 15px;
 }
 
-input{
-  border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
+input {
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
 }
 
-.filter{
-  padding: 5px;
-  background-color: #D91604;
-  color: white;
-  width: 400px;
-  height: auto;
-  margin: auto;
-  border-radius: 15px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+.filter {
+    padding: 5px;
+    background-color: #D91604;
+    color: white;
+    width: 400px;
+    height: auto;
+    margin: auto;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
-.filter button{
-  background-color: #ff867d;
-  border-radius: 5px;
-  color:white;
-  font-size: 15px;
-  padding: auto;
+.filter button {
+    background-color: #ff867d;
+    border-radius: 5px;
+    color: white;
+    font-size: 15px;
+    padding: auto;
 }
 
-.bottomBun{
-  padding: 12px;
-  background-color:#FF8731;
-  color: black;
-  text-align: center;
-  width: 400px;
-  height: 40px;
-  margin: auto;
-  border-radius: 10px 10px 100px 100px;
-  font-size: 12px;
+.bottomBun {
+    padding: 12px;
+    background-color: #FF8731;
+    color: black;
+    text-align: center;
+    width: 400px;
+    height: 40px;
+    margin: auto;
+    border-radius: 10px 10px 100px 100px;
+    font-size: 12px;
 }
 
-.todo{
-  align-items: center;
-  display: flex;
-  font-size: 20px;
-  justify-content: space-between;
+.todo {
+    align-items: center;
+    display: flex;
+    font-size: 20px;
+    justify-content: space-between;
 }
 
-.patty{
-  display: flex;
-  justify-content: center;
-  padding: 10px;
-  background-color: #512314;
-  color: white;
-  width: 400px;
-  margin: auto;
-  border-radius: 30px;
-  height: 40px;
+.patty {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    background-color: #512314;
+    color: white;
+    width: 400px;
+    margin: auto;
+    border-radius: 30px;
+    height: 40px;
 }
 
-.patty input{
-  margin: auto;
-}
-.patty h4{
-  width: 200px;
-  text-align: left;
-  padding: 0;
-  margin: auto;
+.patty input {
+    margin: auto;
 }
 
-.patty button{
-  background-color: #FFAA01;
-  /* margin: 5px; */
-  border-radius: 5px;
-  /* padding: 5px 10px; */
-  border: none;
-  font-size: 15px;
-  height: 30px;
-  margin: auto;
+.patty h4 {
+    width: 200px;
+    text-align: left;
+    padding: 0;
+    margin: auto;
 }
 
+.patty button {
+    background-color: #FFAA01;
+    /* margin: 5px; */
+    border-radius: 5px;
+    /* padding: 5px 10px; */
+    border: none;
+    font-size: 15px;
+    height: 30px;
+    margin: auto;
+}

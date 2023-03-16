@@ -1,0 +1,23 @@
+  .dashboard__container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+    background-color: #FF8731;
+    width: 350px;
+    border-radius: 10px 10px 100px 100px;
+    height: 100px;
+    margin: auto;
+  }
+  .dashboard__btn {
+    padding: 10px;
+    font-size: 18px;
+    border: none;
+    color: white;
+    background-color: #D91604;
+    border-radius: 10px;
+    width: 100px;
+    margin: auto;
+    margin-top: 10px;
+  }
+  
