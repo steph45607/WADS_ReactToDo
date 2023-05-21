@@ -5,12 +5,20 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Reset from "./components/Reset";
 import Logout from "./components/Logout";
+import {useCookies} from 'react-cookie';
+
+const App = () => {
+  const [name, setName] = useState('');
+  const [pwd, setPwd] = useState('');
+  const [cookies, setCookie] = useCookies(['user']);
+
+  const handle = () => {
+     setCookie('Name', name, { path: '/' });
+     setCookie('Password', pwd, { path: '/' });
+  };
 
 function App() {
   return (
-    // <div className="app">
-    //   <Title />
-    // </div>
     <div className="app">
       <Router>
         <Routes>
