@@ -2,13 +2,12 @@ import "../styles/register.css"
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import {
   auth,
   registerWithEmailAndPassword,
   signInWithGoogle,
 } from "../firebase";
-import Title from "./Title";
+
 function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,8 +21,8 @@ function Register() {
   };
   useEffect(() => {
     if (loading) return;
-    if (user) history.replace("/dashboard");
-  }, [user, loading]);
+    if (user) history("/dashboard");
+  }, [user, loading, error, history]);
   return (
     <div className="register">
       <div className="register__container">

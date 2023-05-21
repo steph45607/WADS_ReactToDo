@@ -16,27 +16,25 @@ function TodoList({ id, title, description, completed }) {
   };
 
   /* function to update document in firestore */
-  const handleCheckedChange = async(e) => {
-    e.preventDefault()
+  const handleCheckedChange = async() => {
     const todoDocRef = doc(db, 'bagusTask',id)
     try{
       await updateDoc(todoDocRef,{
         completed: checked
-      })
+      });
     }
     catch(err){
-      alert(err)
+      alert(err);
     }
-  }
+  };
 
   /* function to delete a document from firstore */
   const handleDelete = async() => {
     const todoDocRef = doc(db, 'bagusTask',id)
     try{
       await deleteDoc(todoDocRef)
-    }
-    catch(err){
-      alert(err)
+    } catch(err){
+      alert(err);
     }
   }
 
@@ -70,9 +68,7 @@ function TodoList({ id, title, description, completed }) {
             </IconButton>
             <IconButton style={{color: "white"}} aria-label="delete" onClick={handleDelete}><Delete /></IconButton>
             <IconButton style={{color: "white"}} onClick={() => setOpen({ ...open, view: true })}><Preview/></IconButton>
-          </div>
-          {/* <IconButton style={{color: "white"}} onClick={() => setOpen({ ...open, view: true })}><Preview/></IconButton> */}
-        </div>
+          </div>        </div>
       </div>
 
       {open.view && (

@@ -6,7 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-origins = ["http://localhost:3000"]
+origins = ["https://localhost:3000"]
 
 app.add_middleware(
     CORSMiddleware,
@@ -16,77 +16,101 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
-students = {
-    1:{
-        "name":"Anya",
-        "age":21,
-        "classes":"L4AC"
+tasks = {
+    "6Y0To1VcSSfBOfrS4beL":{
+        "completed":True,
+        # "created":"March 15, 2023 at 11:45:28 PM UTC+7",
+        "description":"20 duckbills",
+        "title":"Buy Masks"
     },
-    2:{
-        "name":"Steph",
-        "age":20,
-        "classes":"L3AC"
+    "DF2nFjMmjvg3Cncrdmqx":{
+        "completed":False,
+        # "created":"March 15, 2023 at 11:45:28 PM UTC+7",
+        "description":"Anya's Room",
+        "title":"Do Laundry"
     }
 }
 
-
-
 @app.get("/")
 def index():
-    return {"First data":"Hello world"}
+    return {"Message":"Welcome to Stephanie's To Do App"}
 
-# domain/get-student/1
-@app.get("/get-student/{student_id}")
-def get_student(student_id : int = Path(desciption = "Student ID from school")):
-    return students[student_id]
+# domain/get-task/{uid}
+# get the task based on the uid
+@app.get("/get-task/{uid}")
+def get_student(uid : str = Path(desciption = "uid")):
+    if uid in tasks:
+        return tasks[uid]
+    return {"Error":"Task title not found"}
 
-# domain/menu?search="value"
-@app.get("/get-student-by-name")
-def get_student_by_name(*, name: Optional[str] = None):
-    for id in students:
-        if students[id]["name"] == name:
-            return students[id]
-    return {"Error":"Student name not found"}
+# domain/get-task-by-title?title=task
+# get the task based on the title
+@app.get("/get-task-by-title")
+def get_task_by_title(*, title: Optional[str] = None):
+    for uid in tasks:
+        if tasks[uid]["title"] == title:
+            return tasks[uid]
+    return {"Error":"Task title not found"}
 
-# you can combine path and query parameter
+@app.get("/list-tasks")
+def list_task():
+    return tasks
 
-class Student(BaseModel):
-    name: str
-    age: int
-    classes:str
 
-class UpdateStudent(BaseModel):
-    name: Optional[str] = None
-    age: Optional[int] = None
-    classes: Optional[str] = None
+class Task(BaseModel):
+    completed: bool
+    description: str
+    title:str
+
+class UpdatedTask(BaseModel):
+    completed: Optional[bool] = None
+    description: Optional[str] = None
+    title: Optional[str] = None
 
 # post method
-@app.post("/create_student/{id}")
-def add_student_id(id:str, student:Student):
-    if id in students:
-        return{"Error":"Student ID exists"}
-    students[id]= student
-    return students[id]
+# add new task
+@app.post("/create-task/{uid}")
+def add_task_id(uid:str, task:Task):
+    if uid in tasks:
+        return{"Error":"Task uid already exists"}
+    tasks[uid]= task
+    return tasks[uid]
+
 
 # put method
-@app.put("/update-student/{id}")
-def update_student(id:int, student:UpdateStudent):
-    if id not in students:
-        return {"Error":"Student doesn't exists"}
-    if students[id].name != None:
-        students[id].name = student.name
-
-    if students[id].age != None:
-        students[id].age = student.age
-
-    if students[id].classes != None:
-        students[id].classes = student.classes
+# update task
+@app.put("/update-task/{uid}")
+def update_task(uid:str, task:UpdatedTask):
+    if uid not in tasks:
+        return {"Error":"Task doesn't exists"}
     
-    return students[id]
+    if task.completed != None:
+        print(task.completed)
+        tasks[uid]["completed"] = task.completed
+
+    if task.description != None:
+        tasks[uid]["description"] = task.description
+
+    if task.title != None:
+        tasks[uid]["title"] = task.title
+    
+    return tasks[uid]
+
 
 # delete method
-@app.delete("/delete-student/{id}")
-def delete_student(id:int):
-    del students[id]
-    return {"Data":"Has been deleted"}
+@app.delete("/delete-task/{id}")
+def delete_task(id:str):
+    for uid in tasks:
+        if uid == id:
+            del tasks[uid]
+            return {"Data":"has been deleted"}
+    return {"Data":"UID doesn't exists"}
+
+
+@app.delete("/delete-task-by-title")
+def delete_task_by_title(title: str = None):
+    for uid in tasks:
+        if tasks[uid]["title"] == title:
+            del tasks[uid]
+            return {"Data":"Has been deleted"}
+    return {"Data":"Task title not found"}
