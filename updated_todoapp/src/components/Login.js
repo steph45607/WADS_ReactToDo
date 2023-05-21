@@ -3,12 +3,19 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { auth, signInWithEmailAndPassword, signInWithGoogle } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
+import {useCookies} from 'react-cookie';
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [cookies, setCookie] = useCookies(['user']);
   const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
+
+  const handle = () => {
+    setCookie('Email', email, {path: "/"});
+    setCookie("Password", password, {path:"/"});
+  }
 
   useEffect(() => {
     if (loading) {
@@ -42,6 +49,8 @@ function Login() {
           placeholder="Password"
         />
         <button
+          onClick={handle}>Set Cookie</button>
+        <button
           className="login__btn"
           onClick={() => signInWithEmailAndPassword(email, password)}
         >
@@ -57,6 +66,18 @@ function Login() {
           Don't have an account? <Link to="/register">Register</Link> now.
         </div>
       </div>
+      {cookies.Email && (
+        <div>
+          Email: <p>{cookies.Email}</p>
+        </div>
+      )}
+      {
+        cookies.Password && (
+          <div>
+            Password: <p>{cookies.Password}</p>
+          </div>
+        )
+      }
     </div>
   );
 }
