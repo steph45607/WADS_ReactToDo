@@ -1,12 +1,14 @@
 # import the package or library
-from fastapi import FastAPI, Path
+from fastapi import FastAPI, Path, Depends
 from typing import Optional
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
+import sqlalchemy
 
 app = FastAPI()
 
-origins = ["https://localhost:3000"]
+origins = ["https://localhost:3001",
+           "https://localhost:8080"]
 
 app.add_middleware(
     CORSMiddleware,
@@ -15,6 +17,12 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+mongodb_uri = 'mongodb+srv://manjeet:test1234@cluster0.nbszr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+port = 8000
+client = MongoClient(mongodb_uri, port)
+db = client["User"]
 
 tasks = {
     "6Y0To1VcSSfBOfrS4beL":{

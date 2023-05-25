@@ -33,7 +33,7 @@ function Dashboard() {
           Logout
          </button>
        </div>
-    
+
   );
 }
 export default Dashboard;

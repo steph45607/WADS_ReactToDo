@@ -5,6 +5,8 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Reset from "./components/Reset";
 import Logout from "./components/Logout";
+import Forms from "./components/form"
+import Buttons from "./components/buttons"
 
 function App() {
   return (
@@ -16,6 +18,9 @@ function App() {
           <Route exact path="/reset" element={<Reset />} />
           <Route exact path="/dashboard" element={<Title />} />
           <Route exact path="/logout" element={<Logout />} />
+          <Route exact path="/forms" element={<Forms />} />
+          <Route exact path="/buttons" element={<Buttons />} />
+
         </Routes>
       </Router>
     </div>

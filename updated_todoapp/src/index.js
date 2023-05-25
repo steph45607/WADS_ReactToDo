@@ -7,9 +7,9 @@ import {CookieProvider} from "react-cookie";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <CookieProvider>
+  <React.StrictMode>
     <App />
-  </CookieProvider>
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

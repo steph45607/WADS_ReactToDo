@@ -8,7 +8,7 @@ function EditTodo({ open, onClose, toEditTitle, toEditDescription, id }) {
   const [title, setTitle] = useState(toEditTitle);
   const [description, setDescription] = useState(toEditDescription);
 
-  /* function to update document in firestore */
+/* function to update document in firestore */
 const handleUpdate = async(e) => {
   e.preventDefault()
   const todoDocRef = doc(db, 'bagusTask',id)

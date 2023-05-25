@@ -19,7 +19,7 @@ function AddTodo({onClose, open}) {
     .catch(function (error) {
       console.log(error);
     });
-  
+
   const handleSubmit = async(e) => {
     e.preventDefault()
     try{
@@ -35,7 +35,7 @@ function AddTodo({onClose, open}) {
       alert(err)
     }
   };
-  
+
   const handleSubmitAPI = async (e) => {
     e.preventDefault();
     try {
@@ -63,18 +63,18 @@ function AddTodo({onClose, open}) {
   return (
     <Modal modalLable='Add Todo' onClose={onClose} open={open}>
       <form onSubmit={handleSubmitAPI} className='addTodo' name='addTodo'>
-        <input 
-          type='text' 
-          name='title' 
-          onChange={(e) => setTitle(e.target.value.toUpperCase())} 
+        <input
+          type='text'
+          name='title'
+          onChange={(e) => setTitle(e.target.value.toUpperCase())}
           value={title}
           placeholder='Enter title'/>
-        <textarea 
+        <textarea
           onChange={(e) => setDescription(e.target.value)}
           placeholder='Enter task decription'
           value={description}></textarea>
         <button type='submit'>Done</button>
-      </form> 
+      </form>
     </Modal>
   )
 }
