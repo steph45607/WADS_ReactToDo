@@ -49,8 +49,9 @@ class TokenData(BaseModel):
 
 class User(BaseModel):
     username: str
-    email: Union[str, None] = None
     full_name: Union[str, None] = None
+    email: Union[str, None] = None
+    password:  Union[str, None] = None
     disabled: Union[bool, None] = None
 
 class UserInDB(User):
@@ -83,18 +84,25 @@ def get_password_hash(password):
     return pwd_context.hash(password)
 
 
-def get_user(db, username: str):
-    if username in db:
-        user_dict = db[username]
-        return UserInDB(**user_dict)
+def get_user(username: str):
+    cursor.execute("select * from User")
+    db = cursor.fetchall()
+    # print(db)
+    # print(username)
+    if username == db[0][2]:
+        # user_dict = db[username]
+        # return UserInDB(**user_dict)
+        return db[0]
 
 
 def authenticate_user(username: str, password: str):
     cursor.execute("select * from User")
     anya = cursor.fetchall()
     # print(anya)
+    # print(anya[0][2])
+    # print(anya[0][3])
     # print(item.username)
-    if username in anya[0]:
+    if username == anya[0][2] and verify_password(password, anya[0][3]):
         # return {"status": "ok"}
         return username
     else:
@@ -107,6 +115,13 @@ def authenticate_user(username: str, password: str):
     #     return False
     # return user
 
+def get_user_full_name(username: str):
+    cursor.execute("SELECT fullname FROM User WHERE username = %s", (username,))
+    result = cursor.fetchall()
+    if result:
+        return result[0]
+    else:
+        return None
 
 def create_access_token(data: dict, expires_delta: Union[timedelta, None] = None):
     to_encode = data.copy()
@@ -117,6 +132,7 @@ def create_access_token(data: dict, expires_delta: Union[timedelta, None] = None
     to_encode.update({"exp": expire})
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt
+
 
 
 async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):
@@ -133,24 +149,30 @@ async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):
         token_data = TokenData(username=username)
     except JWTError:
         raise credentials_exception
-    user = get_user(conn, username=token_data.username)
+    user = get_user(username=token_data.username)
     if user is None:
         raise credentials_exception
+    # print("user :", user)
     return user
 
 
 async def get_current_active_user(
     current_user: Annotated[User, Depends(get_current_user)]
 ):
-    if current_user.disabled:
+    # print(current_user[1])
+    if current_user[0][4] == 1:
+        # print("fail")
         raise HTTPException(status_code=400, detail="Inactive user")
+    # print("through")
+    # print(current_user[1])
     return current_user
+    # return current_user
 
 @app.get("/dummy")
 def check():
     cursor.execute("select * from User")
     anya = cursor.fetchall()
-    print(anya)
+    # print(anya)
     return {"data":"data"}
 
 class Test(BaseModel):
@@ -160,8 +182,8 @@ class Test(BaseModel):
 def login(item: Test):
     cursor.execute("select * from User")
     anya = cursor.fetchall()
-    print(anya)
-    print(item.username)
+    # print(anya)
+    # print(item.username)
     if item.username in anya[0]:
         return {"status": "ok"}
     else:
@@ -186,11 +208,21 @@ async def login_for_access_token(
     return {"access_token": access_token, "token_type": "bearer"}
 
 
-@app.get("/users/me/", response_model=User)
+# @app.get("/users/me/", response_model=User)
+# async def read_users_me(
+#     current_user: Annotated[User, Depends(get_current_active_user)]
+#     # current_user: Annotated[ ,Depends(get_current_active_user)]
+#     # current_user : str
+# ):
+#     # current_user = Depends(get_current_active_user)
+#     # dict(current_user)
+#     return current_user
+
+@app.get("/users/me/")
 async def read_users_me(
     current_user: Annotated[User, Depends(get_current_active_user)]
 ):
-    return current_user
+    return current_user[1]
 
 
 @app.get("/users/me/items/")
