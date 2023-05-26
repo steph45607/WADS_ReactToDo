@@ -7,6 +7,7 @@ import Reset from "./components/Reset";
 import Logout from "./components/Logout";
 import Forms from "./components/form"
 import Buttons from "./components/buttons"
+import Welcome from "./components/welcome"
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route exact path="/logout" element={<Logout />} />
           <Route exact path="/forms" element={<Forms />} />
           <Route exact path="/buttons" element={<Buttons />} />
+          <Route exact path="/welcome" element={<Welcome />} />
 
         </Routes>
       </Router>

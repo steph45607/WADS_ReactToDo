@@ -1,0 +1,44 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    /* font-size: 24px; */
+    font-weight: bold;
+    /* margin-bottom: 16px; */
+    width: 300px;
+    border-radius: 45px;
+    text-align: center;
+    color: white;
+    background-color: #D91604;
+}
+
+.name {
+    padding-top:10px;
+    font-size: 18px;
+    color: white;
+    width: 300px;
+    border-radius: 45px;
+    text-align: center;
+    background-color: #512314;
+}
+
+.topBun{
+    background-color: #FF8731;
+    height: 80px;
+    width: 320px;
+    border-radius: 100px 100px 10px 10px;
+}
+
+.logout_btn{
+    background-color: #FF8731;
+    border: none;
+    width: 320px;
+    height: 40px;
+    border-radius: 10px 10px 100px 100px;
+}

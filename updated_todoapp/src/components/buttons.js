@@ -43,7 +43,6 @@ const Buttons = () => {
             <p>not logged in :(</p>
         )}
       <button onClick={handleClick}>Click me!</button>
-      {/* <p>Count: {count}</p> */}
     </div>
   );
 };

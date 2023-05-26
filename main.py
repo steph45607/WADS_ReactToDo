@@ -159,14 +159,9 @@ async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):
 async def get_current_active_user(
     current_user: Annotated[User, Depends(get_current_user)]
 ):
-    # print(current_user[1])
     if current_user[0][4] == 1:
-        # print("fail")
         raise HTTPException(status_code=400, detail="Inactive user")
-    # print("through")
-    # print(current_user[1])
     return current_user
-    # return current_user
 
 @app.get("/dummy")
 def check():
@@ -182,13 +177,11 @@ class Test(BaseModel):
 def login(item: Test):
     cursor.execute("select * from User")
     anya = cursor.fetchall()
-    # print(anya)
-    # print(item.username)
+
     if item.username in anya[0]:
         return {"status": "ok"}
     else:
         return {"status": "not ok"}
-    # return item
 
 @app.post("/token", response_model=Token)
 async def login_for_access_token(
@@ -206,17 +199,6 @@ async def login_for_access_token(
         data={"sub": user}, expires_delta=access_token_expires
     )
     return {"access_token": access_token, "token_type": "bearer"}
-
-
-# @app.get("/users/me/", response_model=User)
-# async def read_users_me(
-#     current_user: Annotated[User, Depends(get_current_active_user)]
-#     # current_user: Annotated[ ,Depends(get_current_active_user)]
-#     # current_user : str
-# ):
-#     # current_user = Depends(get_current_active_user)
-#     # dict(current_user)
-#     return current_user
 
 @app.get("/users/me/")
 async def read_users_me(

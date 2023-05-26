@@ -6,7 +6,7 @@ const Forms = () => {
     const [password, setPassword] = useState("");
     const [valid, setValid] = useState("");
 
-  
+
     const handleSubmit = (e) => {
         e.preventDefault();
         // console.log(e.target.value)
@@ -15,7 +15,7 @@ const Forms = () => {
             username : username,
             password: password
         }
-        
+
         axios
         .post("http://127.0.0.1:8000/token", data,  {
             headers:{
@@ -42,7 +42,7 @@ const Forms = () => {
     console.log(error);
     });
     };
-  
+
     return (
       <div>
         {valid ? (
@@ -68,5 +68,5 @@ const Forms = () => {
       </div>
     );
   };
-  
+
   export default Forms;
